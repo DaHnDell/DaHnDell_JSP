@@ -30,3 +30,6 @@ HTML
 JSP -> 어느 구간은 HTML, 어느 구간은 HTML/
 
 일반 HTML 파일과 다르게 위에 JSP 선언문 양식이 존재함.
+
+MIME -> Multipurpose Internet Mail Extenstions 
+다양한 유형의 정보를 식별하기 위한 표준
