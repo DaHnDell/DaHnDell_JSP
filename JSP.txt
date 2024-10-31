@@ -33,3 +33,7 @@ JSP -> 어느 구간은 HTML, 어느 구간은 HTML/
 
 MIME -> Multipurpose Internet Mail Extenstions 
 다양한 유형의 정보를 식별하기 위한 표준
+
+jsp는 서블릿이고
+서블릿은 실행되어 톰캣으로 인해 전환된 자바 클래스
+사실 위 두개의 내용은 정확히 똑같다.
