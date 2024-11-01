@@ -20,7 +20,7 @@ public class StudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		System.out.println();
 //		Scanner scanner = new Scanner(System.in);
-//		resp.setContentType("text/html; charset=utf-8");
+		resp.setContentType("text/html; charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 		pw.println("<body>");
 		pw.println("<h1>안녕 세상</h1>");
