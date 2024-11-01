@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet{
-	// get, post 모두 사용해야 하므로,,
+	// get, post 모두 사용해야 하므로
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

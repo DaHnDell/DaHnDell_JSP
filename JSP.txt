@@ -66,3 +66,71 @@ PROBLEMS 부에서 문제가 있는 부분은 다 여기서 표현됨(메세지 
 빌드 후 실행 가능한 파일은 자르 파일이 아니라 와르(_war) 파일
 서버에 올라가는 파일은 자바 파일이 아닌 클래스 파일만 올라가게 됨.
 
+http://localhost:8080/01_servlet/student
+
+
+
+여기서 local호스트 = 나. 즉 이용자.
+
+127.0.0.1
+
+ip 주소를 알아내려면 그냥 ipconfig 사용하기.
+
+server = 서비스 제공자. 즉, 서비스를 해주는 대상(특히 고객이 요청할 때까지)
+
+서버를 제공한다 = 서비스 제공자를 제공한다.
+
+
+프로그램 라이프사이클
+
+보조기억장치(하드디스크) => 주기억장치(RAM)에 가져온다(변수 등등), 필요한 만큼의 자원을 운영체제에 요구한다. 
+			, 할당된 자원은 프로세스 종료 시에 반납을 보장받는다.
+solid, state, drive 
+
+스레드 라이프사이클도 위와 크게 다르지 않다. 
+
+서버와 클라이언트 간의 응답과 요청
+
+
+
+xml이든, html이든 단 하나의 부모를 궁극적으로 가져야 한다.. 이유는 트리 구조이기 때문이다.
+
+
+
+화면은 JSP JAVA는 서블릿
+
+
+HTTP 상태 404 는 
+
+web.xml 파일의 </welcome-file-list> 밑에다가
+
+/*
+<servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>stud.MappingServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/1234</url-pattern>
+</servlet-mapping>
+*/
+
+<servlet></servlet>과 <servlet-mapping></servlet-mapping>은 한 쌍이다
+위 작업 후 서버를 구동하면 로컬호스트/프로젝트이름/1234 라는 url로 웹이 켜진다
+이것을 "서블릿이 url에 맵핑되었다"라고 한다
+
+이 귀찮은 작업을 하지 않으려면 자바 클래스에다가 @WebServlet("/1234")를 쓰면 된다
+
+
+자바스크립트가 자바보다 조금 느리다. 따라서 자바에서 사용했던 것을 자바스크립트에서도 사용이 가능하다.
+
+
+서버가 보내는 요청을 받는 대상이 서블릿
+응답이 곧 jsp가 된다.
+
+요청처리 = 서블릿 / 응답 = jsp
+
+논리적, 로지컬한 처리를 jsp에서 처리하려고 하면 문제가 발생할수밖에 없다. 
+유지보수, 분업의 문제
+
+@webservlet("/") 에서 / 빼먹지 않기!
