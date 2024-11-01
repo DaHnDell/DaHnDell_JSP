@@ -7,7 +7,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>TJ ACADEMY UI LAYOUT</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" href="C:\Users\tj\Desktop\DaHnDellStudio\08\layout\images\favicon.ico">
+    <link rel="icon" href="images\favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
         integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
@@ -23,7 +23,7 @@
     <div class="wrap">
         <header class="container-fluid">
             <div class="container clearfix p-2">
-                <a href="index.html" class="float-start"><img src="C:\Users\tj\Desktop\DaHnDellStudio\08\layout\images\biglogo.png" alt="LOGO" class="img-fluid" width="250"></a>
+                <a href="index.html" class="float-start"><img src="images\biglogo.png" alt="LOGO" class="img-fluid" width="250"></a>
                 <h1 class="text-center fw-bold p-3">TJ UI BOARD DEV LAYOUT</h1>
             </div>
             <nav class="navbar bg-dark navbar-expand-sm">
@@ -53,7 +53,7 @@
                 <input type="email" class="form-control my-3" id="email" placeholder="Enter EMAIL" name = email>
                 <input type="text" class="form-control my-3" id="address" placeholder="Enter Detailed ADDRESS" name = address>
                 <div class="input-group my-3">
-                    <input type="text" class="form-control" placeholder="Road Address">
+                    <input type="text" class="form-control" placeholder="Enter ROAD_NAME">
                     <button class="btn btn-outline-dark" type="button" id="search">Search</button>
                 </div>
                 <input type="text" class="form-control my-3" id="roadaddress" placeholder="Select after search" name = roadAddress readonly>
@@ -107,7 +107,6 @@
                 error : function(xhr, msg) {
                     console.log(xhr);
                 }
-                // XHR = XML HTML REQUEST
             })
         });
     </script>
