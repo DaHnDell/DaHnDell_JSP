@@ -4743,5 +4743,14 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+    	<servlet-name>test</servlet-name>
+    	<servlet-class>stud.MappingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>test</servlet-name>
+	    <url-pattern>/1234</url-pattern>
+	</servlet-mapping>
 
 </web-app>
