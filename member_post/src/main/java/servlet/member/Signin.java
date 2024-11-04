@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.MemberService;
 import service.MemberServiceImpl;
@@ -31,11 +32,13 @@ public class Signin extends HttpServlet{
 		
 		if(service.login(id, pw)) {
 			// login 성공
+			HttpSession session =  req.getSession();
+			session.setAttribute("member", service.findBy(id));
+			resp.sendRedirect(req.getContextPath()+"/");
 		}else {
-			
+			resp.sendRedirect("login?msg=fail");
+			// get 방식이어서 파라미터에 관한 것도 생성해야만 함.
 		}
-		
-		resp.sendRedirect("signin");
 	}
 	
 	

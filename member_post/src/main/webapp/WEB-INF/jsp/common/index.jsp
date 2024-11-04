@@ -1,3 +1,4 @@
+<%@page import="vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
     <div class="wrap">
         <header class="container-fluid">
             <div class="container clearfix p-2">
-                <a href="index" class="float-start"><img src="images\biglogo.png" alt="LOGO" class="img-fluid" width="250"></a>
+                <a href="index" class="float-start"><img src="images/biglogo.png" alt="LOGO" class="img-fluid" width="250"></a>
                 <h1 class="text-center fw-bold p-3">TJ UI BOARD DEV LAYOUT</h1>
             </div>
         </header>
@@ -53,20 +54,32 @@
                 </div>
                 <div class="col-md-3 ">
                     <div class="p-4 d-grid gap-2">
-                        <!-- afterlogin -->
-                        <div class="container mx-auto">
-                            <p>welcome, <strong><a href="mypage.html" class="b-2 text-decoration-none">id</a></strong>!</p>
-                            <div class="small btn-group btn-group-sm">
-                                <a href="index.html" class="btn btn-outline-dark small fw-small"> <i> log - out </i> </a> 
-                                <a href="mypage.html" class="btn btn-outline-dark small fw-small"> <i> my - page </i> </a> 
-                            </div>
-                        </div>
+                   	<%
+	                   	Object o = session.getAttribute("member");
+                   		if(o == null){
+                   	%>
                         <!-- beforelogin -->
                         <a href="signin" class="btn btn-sm btn-primary p-3 small fw-bold"> <strong> log - in </strong> </a> 
                         <div class="small btn-group btn-group-sm">
                             <a href="signup" class="btn btn-outline-dark small fw-small"> <i> register new </i> </a> 
                             <a href="signup.html" class="btn btn-outline-dark small fw-small"> <i> query account </i> </a> 
                         </div>
+					<%
+                   		}
+                   		else {
+                   			Member m = (Member) o;
+					%>                        
+                        <!-- afterlogin -->
+                        <div class="container mx-auto">
+                            <p>welcome, <strong><a href="mypage.html" class="b-2 text-decoration-none"><%=m.getName()%>></a></strong>!</p>
+                            <div class="small btn-group btn-group-sm">
+                                <a href="index" class="btn btn-outline-dark small fw-small"> <i> log - out </i> </a> 
+                                <a href="mypage.html" class="btn btn-outline-dark small fw-small"> <i> my - page </i> </a> 
+                            </div>
+                        </div>
+                   	<%
+						}
+                   	%>
                     </div>
                 </div>
             </div>
