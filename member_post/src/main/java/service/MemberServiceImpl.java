@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member findBy(String id) {
-		return MemberDao.selectOne(id);
+		return memberDao.selectOne(id);
 	}
 
 	@Override

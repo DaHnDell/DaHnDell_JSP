@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
 import service.MemberServiceImpl;
-import vo.Member;
 
 @WebServlet("/signin")
 public class Signin extends HttpServlet{
