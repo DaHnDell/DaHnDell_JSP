@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.MemberService;
+import service.MemberServiceImpl;
 import vo.Member;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet{
 	// get, post 모두 사용해야 하므로
+	private MemberService service = new MemberServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,7 +46,10 @@ public class Signup extends HttpServlet{
 				.detailAddr(detailAddr)
 				.build();
 
-		System.out.println(member);
+		System.out.println(member + "입니다.");
+		service.register(member);
+		
+		resp.sendRedirect("signup");
 	}
 	
 }
