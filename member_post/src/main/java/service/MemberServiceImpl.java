@@ -14,13 +14,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member findBy(String id) {
-		return null;
+		return MemberDao.selectOne(id);
 	}
 
 	@Override
 	public boolean login(String id, String pw) {
-		// TODO Auto-generated method stub
-		return false;
+		Member m = findBy(id);
+		return m != null && m.getPw().equals(pw);
 	}
 
 	@Override
