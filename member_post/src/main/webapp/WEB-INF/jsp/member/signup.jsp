@@ -46,7 +46,7 @@
             <hr>
             <h2 class="text-center fw-bold"> SIGN-UP </h2>
             <hr>
-            <form class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto card p-3">
+            <form class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto card p-3" name = "frm" method="post">
                 <input type="text" class="form-control my-3" id="id" placeholder="Enter ID" name = id>
                 <input type="password" class="form-control my-3" id="pw" placeholder="Enter PW" name = pw>
                 <input type="text" class="form-control my-3" id="name" placeholder="Enter NAME" name = name>
