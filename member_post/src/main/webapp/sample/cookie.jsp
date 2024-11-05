@@ -7,16 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ 
-		include file = "header.jsp"
-	%>
-	<h1>outer.jsp</h1>
 	<%
-		String num = request.getParameter("num");
+		Cookie cookie = new Cookie("newjeans", "hypeboy");
+		cookie.setMaxAge(60*60*24);
+		// 
+		response.addCookie(cookie);
 	%>
-	<h3><%= num %></h3>
-	<%
-	%>
-	
 </body>
 </html>

@@ -5,6 +5,14 @@
 <html>
 <head>
 	<jsp:include page="../common/head.jsp" />
+	<style type="text/css">
+		.layer-popup {width: 420px; position: absolute; top:150px; left:calc(50% - 210px); display: none;}
+	    .layer-popup img {display: block;}
+	    .layer-popup p { background-color: darkgray; color: aliceblue; margin: 0; padding:  8px; font-size: 13px;}
+	    .layer-popup p input { vertical-align: middle;}
+	    .layer-popup p a { color: aliceblue; text-decoration: none; float: right;}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -62,6 +70,29 @@
 		</main>
 		<jsp:include page="../common/footer.jsp" />
 	</div>
-
+       <div class="layer-popup">
+          <img src="https://image.yes24.com/momo/scmfiles/AdvertFiles/202410/2575682_241011091003.jpg" alt="팝업">
+              <p class="clearfix">
+                  <span> 오늘은 그만 보기 <input type="checkbox"></span>
+                  <a href="#"> 닫기 </a>
+              </p>
+       </div>
+	<script>
+	if(!$.cookie("layer")){
+		$(".layer-popup").show();
+	}	
+	
+	
+	// 레이어 팝업 내의 닫기 버튼 클릭시 이벤트
+		$(".layer-popup a").click(function(){
+			event.preventDefault();
+			const checked = $(this).prev().find("input:checkbox").prop("checked");
+			console.log(checked);
+			if(checked){
+				$.cookie('layer', 'yes', {expires:1});
+			}
+			$(".layer-popup").hide();
+		})
+	</script>
 </body>
 </html>
