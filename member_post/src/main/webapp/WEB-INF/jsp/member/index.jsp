@@ -44,7 +44,9 @@
 					<%
                    		}
                    		else {
+                   			//Cookie cookie = new Cookie("", "");
                    			Member m = (Member) o;
+
 					%>
 						<div class="container mx-auto">
 							<p>
@@ -78,16 +80,13 @@
               </p>
        </div>
 	<script>
-	if(!$.cookie("layer")){
-		$(".layer-popup").show();
-	}	
-	
-	
-	// 레이어 팝업 내의 닫기 버튼 클릭시 이벤트
+		if(!$.cookie("layer")){
+			$(".layer-popup").show();
+		}	
+		
 		$(".layer-popup a").click(function(){
 			event.preventDefault();
 			const checked = $(this).prev().find("input:checkbox").prop("checked");
-			console.log(checked);
 			if(checked){
 				$.cookie('layer', 'yes', {expires:1});
 			}
