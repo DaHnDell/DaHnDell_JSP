@@ -44,7 +44,7 @@
 									class="b-2 text-decoration-none"><%=m.getName()%></a></strong>!
 							</p>
 							<div class="small btn-group btn-group-sm bg-color-primary">
-								<a href="index" class="btn btn-outline-dark small fw-small">
+								<a href="signout" class="btn btn-outline-dark small fw-small">
 									<i> log - out </i>
 								</a> <a href="mypage.html"
 									class="btn btn-outline-dark small fw-small"> <i> my -
