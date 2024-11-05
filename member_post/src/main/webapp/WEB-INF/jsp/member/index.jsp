@@ -4,17 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="head.jsp" />
+	<jsp:include page="../common/head.jsp" />
 </head>
 <body>
 	<div class="wrap">
-		<jsp:include page="header.jsp" />
+		<jsp:include page="../common/header.jsp" />
 		<main class="container">
 			<div class="row">
-				<jsp:include page="pagedes.jsp" />
+				<div class="col-md-9">
+				    <div class="p-3">
+				        <h1>index</h1>
+				    </div>
+				</div>
 				<div class="col-md-3 ">
 					<div class="p-4 d-grid gap-2">
-						<%
+					<%
 	                   	Object o = session.getAttribute("member");
                    		if(o == null){
                    	%>
@@ -29,7 +33,7 @@
 									account </i>
 							</a>
 						</div>
-						<%
+					<%
                    		}
                    		else {
                    			Member m = (Member) o;
@@ -39,7 +43,7 @@
 								welcome, <strong><a href="mypage.html"
 									class="b-2 text-decoration-none"><%=m.getName()%></a></strong>!
 							</p>
-							<div class="small btn-group btn-group-sm">
+							<div class="small btn-group btn-group-sm bg-color-primary">
 								<a href="index" class="btn btn-outline-dark small fw-small">
 									<i> log - out </i>
 								</a> <a href="mypage.html"
@@ -49,14 +53,14 @@
 							</div>
 
 						</div>
-						<%
+					<%
 						}
                    	%>
 					</div>
 				</div>
 			</div>
 		</main>
-		<jsp:include page="footer.jsp" />
+		<jsp:include page="../common/footer.jsp" />
 	</div>
 
 </body>

@@ -34,7 +34,7 @@ public class Signin extends HttpServlet{
 			// login 성공
 			HttpSession session =  req.getSession();
 			session.setAttribute("member", service.findBy(id));
-			resp.sendRedirect(req.getContextPath()+"/");
+			resp.sendRedirect(req.getContextPath()+"/index");
 		}else {
 			resp.sendRedirect("login?msg=fail");
 			// get 방식이어서 파라미터에 관한 것도 생성해야만 함.
