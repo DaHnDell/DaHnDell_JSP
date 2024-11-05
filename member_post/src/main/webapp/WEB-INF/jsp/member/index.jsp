@@ -44,9 +44,7 @@
 					<%
                    		}
                    		else {
-                   			//Cookie cookie = new Cookie("", "");
                    			Member m = (Member) o;
-
 					%>
 						<div class="container mx-auto">
 							<p>
@@ -56,10 +54,8 @@
 							<div class="small btn-group btn-group-sm bg-color-primary">
 								<a href="signout" class="btn btn-outline-dark small fw-small">
 									<i> log - out </i>
-								</a> <a href="mypage.html"
-									class="btn btn-outline-dark small fw-small"> <i> my -
-										page </i>
-								</a>
+								</a> 
+								<a href="mypage.html" class="btn btn-outline-dark small fw-small"> <i> my - page </i></a>
 							</div>
 
 						</div>
