@@ -139,6 +139,25 @@ web.xml 파일의 </welcome-file-list> 밑에다가
 
 
 
+mvc = Model / View / Controller
+개발 패턴 중 하나
+
+model 1 = > 1 req-jsp = 1 resp 
+
+model 2 = > 1 req-controller -> view = 1 resp 
+
+model 3 = > 1 req-controller -> view or Model(DAO(DBcon), Service) ; view or Model = 1 resp
+
+	= > 1 req-DTO -> Model(DAO(DBcon), Service return VO) ; view or DTO = 1 resp
+	= > ; view ? html : REST = .jsp : JSON 
+
+DTO -> !final + Getter + Setter.
+VO -> final + only Getter.
+
+JPA 에서는 DTO + VO = ENTITY / DAO = REPOSITORY 
+
+
+
 
 
 
@@ -269,4 +288,12 @@ html에서 이동 방식 -------------------------------------------------------
 java에서는 response.sendRedirect("url")
 
 url이 바뀌었다 ? 요청이 바뀌었다 + 주소가 바뀌었다 + 응답도 당연히 바뀌었다.
+
+
+
+
+
+
+마이바티스 / jpa
+
 
