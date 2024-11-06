@@ -1,6 +1,6 @@
-<%@page import="vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix= "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,23 +17,21 @@
 <body>
 	<div class="wrap">
 		<jsp:include page="../common/header.jsp" />
+		<hr>
 		<main class="container">
 			<div class="row">
 				<div class="col-md-9">
-				    <div class="p-3">
-				        <h1>index</h1>
+				    <div class="p-3 text-center mx-auto">
+				        <h1 class="fw-bold text-start">index</h1>
 				    </div>
 				</div>
 				<div class="col-md-3 ">
 					<div class="p-4 d-grid gap-2">
-					<%
-	                   	Object o = session.getAttribute("member");
-                   		if(o == null){
-                   	%>
+					<c:if test="${empty member}">
 						<a href="signin" class="btn btn-sm btn-primary p-3 small fw-bold">
 							<strong> log - in </strong>
 						</a>
-						<div class="small btn-group btn-group-sm">
+						<div class="small btn-group btn-group-sm bg-color-none">
 							<a href="signup" class="btn btn-outline-dark small fw-small">
 								<i> register new </i>
 							</a> <a href="signup.html"
@@ -41,15 +39,12 @@
 									account </i>
 							</a>
 						</div>
-					<%
-                   		}
-                   		else {
-                   			Member m = (Member) o;
-					%>
-						<div class="container mx-auto">
+						</c:if>
+						<c:if test="${not empty member}">
+						<div class="container p-4 text-center bg-white">
 							<p>
-								welcome, <strong><a href="mypage.html"
-									class="b-2 text-decoration-none"><%=m.getName()%></a></strong>!
+								welcome home, <strong><a href="mypage.html"
+									class="b-2 text-decoration-none">${member.name}</a></strong>!
 							</p>
 							<div class="small btn-group btn-group-sm bg-color-primary">
 								<a href="signout" class="btn btn-outline-dark small fw-small">
@@ -57,15 +52,13 @@
 								</a> 
 								<a href="mypage.html" class="btn btn-outline-dark small fw-small"> <i> my - page </i></a>
 							</div>
-
 						</div>
-					<%
-						}
-                   	%>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</main>
+		<hr>
 		<jsp:include page="../common/footer.jsp" />
 	</div>
        <div class="layer-popup">

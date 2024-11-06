@@ -36,6 +36,10 @@ public class Member {
 
 		return new M();
 	}
+	
+	public boolean getNum() {
+		return true;
+	}
 
 	public static class M { // 객체 생성용으로 사용되는 내부 클래스, static 없으면 인스턴스 클래스가 됨.
 		String id;
@@ -86,5 +90,6 @@ public class Member {
 		}
 
 	}
+	
 
 }
