@@ -27,19 +27,29 @@ public class Signin extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		String id = req.getParameter("id");
 		String pw = req.getParameter("pw");
-//		Cookie cookie = new Cookie("id", null);
+		String rem = req.getParameter("remember-id");
+		System.out.println(rem);
+		
+		
+//			cookie.setValue(service.findBy(id).getId());
+//			resp.addCookie(cookie);
+//			cookie.setMaxAge(0);
 		if(service.login(id, pw)) {
+			// login 성공
 			HttpSession session =  req.getSession();
 			session.setAttribute("member", service.findBy(id));
-//			cookie.setValue(service.findBy(id).getId());
-			// login 성공
-//			resp.addCookie(cookie);
 			resp.sendRedirect(req.getContextPath()+"/index");
+			
+			// 쿠키의 id 기억 처리 여부
+			if(rem != null) {
+			Cookie cookie = new Cookie("cookid", id);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			resp.addCookie(cookie);
+			}
 		}else {
-//			cookie.setMaxAge(0);
 			resp.sendRedirect("login?msg=fail");
-			// get 방식이어서 파라미터에 관한 것도 생성해야만 함.
 		}
+		// get 방식이어서 파라미터에 관한 것도 생성해야만 함.
 	}
 	
 	

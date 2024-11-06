@@ -52,7 +52,7 @@
                 <input type="password" class="form-control my-3" id="pw" placeholder="Enter PW" name = pw>
                 <div class="form-check form-switch my-3">
                     <input class="form-check-input" type="checkbox" id="mySwitch" name="remember-id" value="yes" >
-                    <label class="form-check-label" for="mySwitch">Remember me</label>
+                    <label class="form-check-label" for="mySwitch"> Remember me </label>
                 </div>
                 <hr>
                 <button class="btn btn-outline-dark" id = "loginbtn"> Log-in </button>
