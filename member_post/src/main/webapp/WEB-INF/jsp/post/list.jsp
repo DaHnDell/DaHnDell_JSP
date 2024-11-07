@@ -15,6 +15,13 @@
 </head>
 <jsp:include page="../common/header.jsp" />
 <body>
+    <main class="container">
+        <h1>list</h1>
+        ${posts}
+    </main>
+	<jsp:include page="../common/footer.jsp" />
+</body>
+
 <%-- 	
 	<c:forEach begin="2" end="9" var = "i" step = "2">
 		${i} 단
@@ -24,14 +31,8 @@
 	</c:forEach> 
 --%>
 
-	<c:forEach items="${posts}" var = "post" varStatus="stat" begin = "3" end = "10" step = "2">
+<%-- 	<c:forEach items="${posts}" var = "post" varStatus="stat" begin = "3" end = "10" step = "2">
 		<p>${stat} // ${post.title}</p>
 		<h3>${stat.index} // ${stat.count} // ${post.title}</h3>
 		<p>${posts[stat.index] == post}</p>
-	</c:forEach>
-    <main class="container">
-        <h1>list</h1>
-        ${posts}
-    </main>
-	<jsp:include page="../common/footer.jsp" />
-</body>
+	</c:forEach> --%>
