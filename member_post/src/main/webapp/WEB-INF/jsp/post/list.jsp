@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="../common/head.jsp" />
+	<jsp:include page="../common/head.jsp"/>
 </head>
 <body>
 	<div class="wrap">
-		<jsp:include page="../common/header.jsp" />
+		<jsp:include page="../common/header.jsp"/>
 		<hr>
 		<main class="container">
 			<h2 class="my-4 fw-bold">POSTS</h2>
@@ -25,8 +25,8 @@
                 <tbody>
                 <c:forEach items="${posts}" var="p">
 	                <tr>
-	                    <td>${p}</td>
-	                    <td class="text-truncate text-start"><a href="view?pno${p.pno}" class="text-decoration-none">${p.title}</a></td>
+	                    <td>${stat}</td>
+	                    <td class="text-truncate text-start"><a href="view?pno=${p.pno}" class="text-decoration-none">${p.title}</a></td>
 	                    <td>${p.writer}</td>
 	                    <td>${p.regDate}</td>
 	                    <td>${p.viewCnt}</td>
@@ -43,7 +43,7 @@
 				</ul>
 		</main>
 		<hr>
-		<jsp:include page="../common/footer.jsp" />
+		<jsp:include page="../common/footer.jsp"/>
 	</div>
 </body>
 </html>
