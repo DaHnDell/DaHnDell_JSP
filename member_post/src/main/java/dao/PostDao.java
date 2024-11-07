@@ -64,7 +64,7 @@ public class PostDao {
 	
 	public List<Post> selectList(){
 		List<Post> posts = new ArrayList<Post>();
-		String sql = "select pno, title, writer, view_cnt, regdate, from tbl_post where pno = ?";
+		String sql = "select pno, title, writer, view_cnt, regdate from tbl_post";
 		try (Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -151,18 +151,19 @@ public class PostDao {
 //		System.out.println(result);
 		
 		
-		Post sel1Post = dao.selectOne(4L);
-		System.out.println(sel1Post);
-		int result2 = dao.update(sel1Post.builder().title("ctitle@").content("contentTest.03c").pno(sel1Post.getPno()).build()); 
-		System.out.println(result2);
+//		Post sel1Post = dao.selectOne(4L);
+//		System.out.println(sel1Post);
+//		int result2 = dao.update(sel1Post.builder().title("ctitle@").content("contentTest.03c").pno(sel1Post.getPno()).build()); 
+//		System.out.println(result2);
+//		
+//		// 강사님 코드
+//		Post post = dao.selectOne(10L);
+//		System.out.println(post);
+//		post = Post.builder().pno(post.getPno()).title("modTitle").content("modContent").build();
+//		dao.update(post);
+//		post = dao.selectOne(10L);
+//		System.out.println(post);
 		
-		// 강사님 코드
-		Post post = dao.selectOne(10L);
-		System.out.println(post);
-		post = Post.builder().pno(post.getPno()).title("modTitle").content("modContent").build();
-		dao.update(post);
-		post = dao.selectOne(10L);
-		System.out.println(post);
-		
+		new PostDao().selectList().forEach(System.out::println);
 	}
 }
