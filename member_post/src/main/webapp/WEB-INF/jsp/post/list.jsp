@@ -25,7 +25,7 @@
                 <tbody>
                 <c:forEach items="${posts}" var="p">
 	                <tr>
-	                    <td>1</td>
+	                    <td>${p}</td>
 	                    <td class="text-truncate text-start"><a href="view?pno${p.pno}" class="text-decoration-none">${p.title}</a></td>
 	                    <td>${p.writer}</td>
 	                    <td>${p.regDate}</td>

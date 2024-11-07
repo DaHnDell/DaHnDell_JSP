@@ -64,7 +64,7 @@ public class PostDao {
 	
 	public List<Post> selectList(){
 		List<Post> posts = new ArrayList<Post>();
-		String sql = "select pno, title, writer, view_cnt, regdate from tbl_post";
+		String sql = "select pno, title, writer, view_cnt, regdate from tbl_post order by 1 desc";
 		try (Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -164,6 +164,6 @@ public class PostDao {
 //		post = dao.selectOne(10L);
 //		System.out.println(post);
 		
-		new PostDao().selectList().forEach(System.out::println);
+//		new PostDao().selectList().forEach(System.out::println);
 	}
 }
