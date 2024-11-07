@@ -149,12 +149,14 @@ public class PostDao {
 //		System.out.println(dao.selectOne(6L));
 //		int result = dao.insert(Post.builder().title("test@03").writer("rlagksals").content("contentTest.03").build());
 //		System.out.println(result);
+		
+		
 		Post sel1Post = dao.selectOne(4L);
 		System.out.println(sel1Post);
 		int result2 = dao.update(sel1Post.builder().title("ctitle@").content("contentTest.03c").pno(sel1Post.getPno()).build()); 
 		System.out.println(result2);
 		
-		
+		// 강사님 코드
 		Post post = dao.selectOne(10L);
 		System.out.println(post);
 		post = Post.builder().pno(post.getPno()).title("modTitle").content("modContent").build();

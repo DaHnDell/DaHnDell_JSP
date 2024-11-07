@@ -28,7 +28,7 @@ public class Signin extends HttpServlet{
 		String id = req.getParameter("id");
 		String pw = req.getParameter("pw");
 		String rem = req.getParameter("remember-id");
-		System.out.println(rem);
+//		System.out.println(rem);
 		
 		
 //			cookie.setValue(service.findBy(id).getId());
