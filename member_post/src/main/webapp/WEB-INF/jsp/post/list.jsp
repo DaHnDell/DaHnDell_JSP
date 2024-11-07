@@ -24,8 +24,10 @@
 	</c:forEach> 
 --%>
 
-	<c:forEach items="${posts}" var = "post">
-		<p>${post.title}</p>
+	<c:forEach items="${posts}" var = "post" varStatus="stat" begin = "3" end = "10" step = "2">
+		<p>${stat} // ${post.title}</p>
+		<h3>${stat.index} // ${stat.count} // ${post.title}</h3>
+		<p>${posts[stat.index] == post}</p>
 	</c:forEach>
     <main class="container">
         <h1>list</h1>
