@@ -13,7 +13,7 @@
 		<main class="container">
 			<div class="clearfix my-4">
 				<h2 class="fw-bold text-big"><i class="fa-solid fa-book"></i> POSTS</h2>
-				<a href="write" class="btn btn-outline-dark btn-warning float-end fw-bold">글쓰기</a>
+				<a href="write" class="btn btn-outline-dark btn-warning float-end fw-bold">WRITE POST</a>
 			</div>
             <table class="table table-hover text-center border">
                 <thead>

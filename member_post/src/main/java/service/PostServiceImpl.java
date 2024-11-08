@@ -28,6 +28,12 @@ public class PostServiceImpl implements PostService{
 	public Post findBy(Long pno) {
 		return postdao.selectOne(pno);
 	}
+
+	@Override
+	public Post view(Long pno) {
+		postdao.increaseViewCount(pno);
+		return findBy(pno);
+	}
 	
 	@Override
 	public List<Post> list(){

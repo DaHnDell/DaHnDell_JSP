@@ -16,11 +16,13 @@ public class DBConn {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		String driver = props.getProperty("driver");
 		String host = props.getProperty("host");
 		String username = props.getProperty("username");
 		String password = props.getProperty("password");
 		Class.forName(driver);
+		
 		return DriverManager.getConnection(host, username, password);
 	}
 	

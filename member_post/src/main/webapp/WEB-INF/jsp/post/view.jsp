@@ -12,7 +12,7 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-book-open"></i> POST VIEW</h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-book-open"></i> POST VIEW </h2>
 				<a href="/write" class="btn btn-outline-dark btn-warning float-end fw-bold">POST</a>
 			</div>
             <div class="my-3 col-md-9 mx-auto">

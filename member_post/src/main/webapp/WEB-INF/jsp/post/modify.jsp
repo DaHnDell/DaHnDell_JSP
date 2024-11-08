@@ -20,7 +20,7 @@
 	                <input type="text" class="form-control" id="title" placeholder="input title" name="title" value="${post.title}">
 	                
 	                <label for="content" class="form-label mt-3"><i class="fa-solid fa-pen-to-square text-primary"></i><b> Content </b></label>
-	                <textarea rows="15" type="text" class="form-control" id="title" placeholder="input content" name="content"></textarea>
+	                <textarea rows="15" type="text" class="form-control" id="title" placeholder="input content" name="content"> ${post.content} </textarea>
 	                
 	                <label for="writer" class="form-label mt-3"><i class="fa-solid fa-user-pen text-primary"></i><b> Writer </b></label>
 	                <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}" readonly>
