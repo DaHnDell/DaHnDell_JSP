@@ -347,3 +347,7 @@ winnetstate
 
 jstl = fmt, fn 등의 기능들도 있음.
 
+
+
+contextpath = /memeber_post
+
