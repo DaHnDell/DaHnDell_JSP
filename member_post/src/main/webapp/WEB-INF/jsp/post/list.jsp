@@ -11,8 +11,11 @@
 		<jsp:include page="../common/header.jsp"/>
 		<hr>
 		<main class="container">
-			<h2 class="my-4 fw-bold">POSTS</h2>
-            <table class="table table-hover text-center border border-dark">
+			<div class="clearfix my-4">
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-book"></i> POSTS</h2>
+				<a href="write" class="btn btn-outline-dark btn-warning float-end fw-bold">글쓰기</a>
+			</div>
+            <table class="table table-hover text-center border">
                 <thead>
                 <tr>
                     <th style="width: 10%;">postNo</th>
@@ -25,7 +28,7 @@
                 <tbody>
                 <c:forEach items="${posts}" var="p">
 	                <tr>
-	                    <td>${stat}</td>
+	                    <td>${p.pno}</td>
 	                    <td class="text-truncate text-start"><a href="view?pno=${p.pno}" class="text-decoration-none">${p.title}</a></td>
 	                    <td>${p.writer}</td>
 	                    <td>${p.regDate}</td>
@@ -35,7 +38,7 @@
                 </tbody>
 			</table>
                 <ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#">Prev</a></li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
 					<li class="page-item active"><a class="page-link" href="#">2</a></li>
 					<li class="page-item"><a class="page-link" href="#">3</a></li>

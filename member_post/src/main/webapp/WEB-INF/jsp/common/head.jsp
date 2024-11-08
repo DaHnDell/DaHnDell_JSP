@@ -27,12 +27,12 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
 <style type="text/css">
-body {
-	background-color: #eee;
-}
-.layer-popup {width: 420px; position: absolute; top:150px; left:calc(50% - 210px); display: none;}
-.layer-popup img {display: block;}
-.layer-popup p { background-color: darkgray; color: aliceblue; margin: 0; padding:  8px; font-size: 13px;}
-.layer-popup p input { vertical-align: middle;}
-.layer-popup p a { color: aliceblue; text-decoration: none; float: right;}
+	body {
+		background-color: #eee;
+	}
+	.layer-popup {width: 420px; position: absolute; top:150px; left:calc(50% - 210px); display: none;}
+	.layer-popup img {display: block;}
+	.layer-popup p { background-color: darkgray; color: aliceblue; margin: 0; padding:  8px; font-size: 13px;}
+	.layer-popup p input { vertical-align: middle;}
+	.layer-popup p a { color: aliceblue; text-decoration: none; float: right;}
 </style>

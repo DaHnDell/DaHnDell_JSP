@@ -28,13 +28,12 @@
 							<a href="signup" class="btn btn-outline-dark small fw-small">
 								<i> register new </i>
 							</a> <a href="signup.html"
-								class="btn btn-outline-dark small fw-small"> <i> query
-									account </i>
+								class="btn btn-outline-dark small fw-small"> <i> query account </i>
 							</a>
 						</div>
 						</c:if>
 						<c:if test="${not empty member}">
-						<div class="container p-4 text-center bg-white">
+						<div class="container p-4 text-center bg-white border">
 							<p>
 								welcome home, <strong><a href="mypage.html"
 									class="b-2 text-decoration-none">${member.name}</a></strong>!
