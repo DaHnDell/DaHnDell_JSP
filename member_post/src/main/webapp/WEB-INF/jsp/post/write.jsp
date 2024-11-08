@@ -26,8 +26,8 @@
 	                <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}" readonly>
 		
 		             <div class="text-center my-5">
-	             		<button class="btn btn-outline-dark btn-warning">SUBMIT</button>
-	                    <a href="list" class="btn btn-outline-warning">SHOW LIST</a>
+	             		<button class="btn btn-outline-dark btn-warning">DO-POST</button>
+	                    <a href="list" class="btn btn-outline-warning border-dark">RETURN</a>
 		             </div>
              	</form>
             </div>

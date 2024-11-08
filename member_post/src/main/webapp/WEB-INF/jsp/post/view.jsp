@@ -32,7 +32,11 @@
                 <input type="text" class="form-control" id="updatedate" placeholder="updatedate" name="updatedate" value="${post.updateDate}" disabled>
 
              <div class="text-center my-5">
-                    <a href="list" class="btn btn-outline-primary">Show List</a>
+             		<c:if test="${post.writer == member.id}">
+             		<a href="modify?pno=${post.pno}" class="btn btn-outline-dark"> ALTER </a>
+             		<a href="remove?pno=${post.pno}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE </a>
+             		</c:if>
+                    <a href="list" class="btn btn-outline-warning border-dark">RETURN</a>
              </div>
             </div>
 		</main>

@@ -1,6 +1,7 @@
 package servlet.member;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,7 +56,16 @@ public class Signin extends HttpServlet{
 					}
 				}
 			}
-			resp.sendRedirect(req.getContextPath()+"/index");
+			
+			//url 파라미터 여부에 따른 리디렉션 페이지 지정
+			String redirectURL = req.getContextPath() + "/index";
+			String nexturl = req.getParameter("url");
+			if(nexturl != null && !nexturl.equals("")) {
+				redirectURL = URLDecoder.decode(nexturl, "utf-8");
+			}
+			
+			resp.sendRedirect(redirectURL);
+			
 		}else{
 			resp.sendRedirect("login?msg=fail");
 		}
