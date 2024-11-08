@@ -9,7 +9,7 @@ public class ContextPathListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
-		sce.getServletContext().setAttribute("cp", sce.getServletContext().getContextPath());
+		sce.getServletContext().setAttribute("cp", sce.getServletContext().getContextPath()+"/");
 	}
 	
 }

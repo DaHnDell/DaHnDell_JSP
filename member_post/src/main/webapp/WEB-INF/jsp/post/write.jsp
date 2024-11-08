@@ -14,7 +14,7 @@
 			<div class="clearfix my-4">
 				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed"></i> POST WRITE</h2>
 			</div>
-            <div class="my-3 col-md-9 mx-auto">
+            <div class="my-3 col-md-9 mx-auto border border-dark">
 				<form method="post">
 	                <label for="title" class="form-label mt-3"><i class="fa-solid fa-font text-primary"></i><b> Title </b></label>
 	                <input type="text" class="form-control" id="title" placeholder="input title" name="title" value="${post.title}">

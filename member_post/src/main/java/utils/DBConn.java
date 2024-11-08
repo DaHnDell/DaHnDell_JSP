@@ -24,10 +24,7 @@ public class DBConn {
 		return DriverManager.getConnection(host, username, password);
 	}
 	
-//	public static void main(String[] args) throws FileNotFoundException {
-//		Properties props = new Properties();
-//		Properties ps = System.getProperties();
-//		FileReader fileReader = new FileReader("./");
-//		System.out.println(fileReader);
-//	}
+	public static void main(String[] args) throws Exception {
+		System.out.println(getConnection());
+	}
 }
