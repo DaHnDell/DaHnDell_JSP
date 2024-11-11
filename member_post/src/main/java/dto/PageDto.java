@@ -43,7 +43,7 @@ public class PageDto {
 			endPage = realEnd;
 		}
 		
-		prev = criteria.getPage() > 0 ;
+		prev = criteria.getPage() > 1 ;
 		next = criteria.getPage() < endPage;
 		dblPrev = startPage > 1;
 		dblNext = endPage < realEnd;

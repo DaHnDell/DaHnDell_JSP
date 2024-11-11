@@ -39,17 +39,21 @@
 			</table>
 			${pageDto}
                 <ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angles-left text-primary"></i></a></li>
-					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
-					
+					<c:if test="${pageDto.dblPrev}">
+						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angles-left text-primary"></i></a></li>
+					</c:if>					
+					<c:if test="${pageDto.prev}">
+						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
+					</c:if>					
 					<c:forEach begin ="${pageDto.startPage}" end="${pageDto.endPage}" var="page">
 						<li class="page-item ${page == pageDto.criteria.page ? 'active' : ''}"><a class="page-link link-outline-secondary link-dark" href="list?page=${page}&category=${pageDto.criteria.category}">${page}</a></li>
 					</c:forEach>
-					
-<!--  					<li class="page-item"><a class="page-link link-outline-secondary link-dark" href="#">2</a></li>
-					<li class="page-item"><a class="page-link link-outline-secondary link-dark" href="#">3</a></li> -->
-					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-right text-primary"></i></a></li>
+					<c:if test="${pageDto.next}">
+						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-right text-primary"></i></a></li>
+					</c:if>
+					<c:if test="${pageDto.dblNext}">	
 					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angles-right text-primary"></i></a></li>
+					</c:if>
 				</ul>
 		</main>
 		<hr>
