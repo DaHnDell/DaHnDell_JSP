@@ -191,11 +191,11 @@ public class PostDao {
 	
 	public static void main(String[] args) {
 		PostDao dao = new PostDao();
-		Criteria cri = new Criteria(2, 10, 2);
+//		Criteria cri = new Criteria(2, 10, 2);
 		
-		dao.selectList(cri).forEach(System.out::println);
-		System.out.println("=======count=======");
-		System.out.println(dao.getCount(cri));
+//		dao.selectList(cri).forEach(System.out::println);
+//		System.out.println("=======count=======");
+//		System.out.println(dao.getCount(cri));
 		
 		
 		

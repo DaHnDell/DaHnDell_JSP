@@ -23,19 +23,21 @@ public class PostList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// param getter
-		int cate = setDefaultValue(req.getParameter("category"), 2);
-		int page = setDefaultValue(req.getParameter("page"), 1);
-		int amount = setDefaultValue(req.getParameter("amount"), 10);
-		
-		Criteria cri = Criteria.builder().page(page).amount(amount).category(cate).build();
+//		int cate = setDefaultValue(req.getParameter("category"), 2);
+//		int page = setDefaultValue(req.getParameter("page"), 1);
+//		int amount = setDefaultValue(req.getParameter("amount"), 10);
+//		
+//		Criteria cri = Criteria.builder().page(page).amount(amount).category(cate).build();
+		Criteria cri = new Criteria(req);
+		System.out.println(cri);
 //		System.out.println(service.list(cri));
 		req.setAttribute("posts", service.list(cri));
 		req.setAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
 		req.getRequestDispatcher("/WEB-INF/jsp/post/list.jsp").forward(req,resp);
 	}
 	
-	private int setDefaultValue(String value, int def) {
-		return value == null || value.equals("") ? def : Integer.parseInt(value);
-	}
+//	private int setDefaultValue(String value, int def) {
+//		return value == null || value.equals("") ? def : Integer.parseInt(value);
+//	}
 	
 }

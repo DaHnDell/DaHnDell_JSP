@@ -60,8 +60,6 @@ public class PageDto {
 				+ endPage + ", HiddenPage=" + HiddenPage + "]";
 	}
 
-
-	
 	
 //	public int pageOffset() {
 //		int next = criteria.getPage();
