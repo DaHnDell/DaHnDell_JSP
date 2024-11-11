@@ -12,6 +12,7 @@ public class PageDto {
 	private int HiddenPage;
 	private int showNum;
 	private int pageCount; // 페이지 버튼 갯수
+	
 	// 이전 이후 계산용 필드
 	private boolean prev; 
 	private boolean next;
@@ -44,7 +45,7 @@ public class PageDto {
 		}
 		
 		prev = criteria.getPage() > 1 ;
-		next = criteria.getPage() < endPage;
+		next = criteria.getPage() < realEnd;
 		dblPrev = startPage > 1;
 		dblNext = endPage < realEnd;
 	}

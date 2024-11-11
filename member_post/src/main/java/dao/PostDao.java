@@ -18,13 +18,14 @@ public class PostDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "insert into tbl_post(title, writer, content) values(?, ?, ?)";
+			String sql = "insert into tbl_post(title, writer, content, cno) values(?, ?, ?, ?)";
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			int idx = 1;
 			pstmt.setString(idx++, post.getTitle()); 
 			pstmt.setString(idx++, post.getWriter()); 
 			pstmt.setString(idx++, post.getContent()); 
+			pstmt.setInt(idx++, post.getCno()); 
 			return pstmt.executeUpdate();
 		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();

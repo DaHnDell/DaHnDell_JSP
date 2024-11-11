@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dto.Criteria;
 import service.PostService;
 import service.PostServiceImpl;
 import utils.Commons;
@@ -20,13 +22,17 @@ public class View extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Criteria criteria = new Criteria(req);
+		
+		
 		String pnoString = req.getParameter("pno");
 		if(pnoString == null) {
 			Commons.printMsg("SYSTEM :: ERR / INVALID APPROACH", "list", resp);
 			return;
 		}
-		Long bno = Long.valueOf(pnoString);
-		req.setAttribute("post", service.view(bno));
+		Long pno = Long.valueOf(pnoString);
+		req.setAttribute("post", service.view(pno));
+		req.setAttribute("criteria", criteria); // 모델 어트리뷰트
 		req.getRequestDispatcher("/WEB-INF/jsp/post/view.jsp").forward(req,resp);
 	}
 
@@ -34,8 +40,4 @@ public class View extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doPost(req, resp);
 	}
-	
-	
-	
-	
 }

@@ -12,7 +12,7 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-book-open"></i> POST VIEW </h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-book-open text-primary"></i> POST VIEW </h2>
 				<a href="/write" class="btn btn-outline-dark btn-warning float-end fw-bold">POST</a>
 			</div>
             <div class="my-3 col-md-9 mx-auto">
@@ -33,10 +33,10 @@
 
              <div class="text-center my-5">
              		<c:if test="${post.writer == member.id}">
-             		<a href="modify?pno=${post.pno}" class="btn btn-outline-dark"> ALTER </a>
-             		<a href="remove?pno=${post.pno}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE </a>
+             		<a href="modify?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-dark"> ALTER </a>
+             		<a href="remove?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE </a>
              		</c:if>
-                    <a href="list" class="btn btn-outline-warning border-dark">RETURN</a>
+                    <a href="list?${criteria.qs2}" class="btn btn-outline-warning border-dark">RETURN</a>
              </div>
             </div>
 		</main>

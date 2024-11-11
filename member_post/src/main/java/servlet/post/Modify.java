@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Criteria;
 import service.PostService;
 import service.PostServiceImpl;
 import utils.Commons;
@@ -21,20 +22,21 @@ public class Modify extends HttpServlet{
 		
 		String pnoStr = req.getParameter("pno");
 		Object memberObj = req.getSession().getAttribute("member");
+		Criteria criteria = new Criteria(req);
+		String redirectURL = "list?" + criteria.getQs2();
 		
 		if(pnoStr == null || memberObj == null) {
-			Commons.printMsg("SYSTEM :: ERR / INVALID APPROACH", "list", resp);
+			Commons.printMsg("SYSTEM :: ERR / INVALID APPROACH", redirectURL, resp);
 			return;
 		}
 		
 		Long pno = Long.valueOf(pnoStr);
 		Member m = (Member)memberObj;
-		System.out.println(m);
-		System.out.println(pno);
 		if(!m.getId().equals(service.findBy(pno).getWriter())) {
-			Commons.printMsg("SYSTEM :: ERR / POST CAN BE ONLY REMOVED BY WRITER OF IT\'S OWN", "list", resp);
+			Commons.printMsg("SYSTEM :: ERR / POST CAN BE ONLY REMOVED BY WRITER OF IT\'S OWN", redirectURL, resp);
 			return;
 		}
+		req.setAttribute("criteria", criteria);
 		req.setAttribute("post", service.findBy(pno));
 		req.getRequestDispatcher("/WEB-INF/jsp/post/modify.jsp").forward(req, resp);
 	}
@@ -43,8 +45,10 @@ public class Modify extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PostService post = new PostServiceImpl();
 		Object memberObj = req.getSession().getAttribute("member");
+		Criteria criteria = new Criteria(req);
+		
 		if(memberObj == null) {
-			Commons.printMsg("SYSTEM :: ERR / INVALID APPROACH", "list", resp);
+			Commons.printMsg("SYSTEM :: ERR / INVALID APPROACH", "list?" +criteria.getQs2(), resp);
 			return;
 		}
 		Member m = (Member)memberObj;
@@ -55,12 +59,12 @@ public class Modify extends HttpServlet{
 		Long pno = Long.valueOf(pnoStr);
 		
 		if(!m.getId().equals(service.findBy(pno).getWriter())) {
-			Commons.printMsg("SYSTEM :: ERR / POST CAN BE ONLY MODED BY WRITER OF IT'S OWN", "list", resp);
+			Commons.printMsg("SYSTEM :: ERR / POST CAN BE ONLY MODED BY WRITER OF IT'S OWN", "list?" +criteria.getQs2(), resp);
 			return;
 		}
 		
 		service.modify(Post.builder().title(title).content(content).pno(pno).build());
-		resp.sendRedirect("view?pno="+pno);
+		resp.sendRedirect("view?pno="+pno+ "&" +criteria.getQs2());
 	}
 	
 }

@@ -12,10 +12,10 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed text-primary"></i> POST WRITE</h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed text-primary"></i> POST ALTER</h2>
 			</div>
-            <div class="my-3 col-md-9 mx-auto border border-dark">
-				<form method="post">
+            <div class="my-3 col-md-9 mx-auto border border-dark p-4">
+				<form method="post" action = 'modify?${criteria.qs2}'>
 	                <label for="title" class="form-label mt-3"><i class="fa-solid fa-font text-primary"></i><b> Title </b></label>
 	                <input type="text" class="form-control" id="title" placeholder="input title" name="title" value="${post.title}">
 	                

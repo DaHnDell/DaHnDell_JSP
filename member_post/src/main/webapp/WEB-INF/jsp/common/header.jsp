@@ -11,13 +11,13 @@
 	    <ul class="navbar-nav container justify-content-start">
 	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}index">Main</a></li>
 	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}">My</a></li>
-	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}post.html?category=1">Notice</a></li>
+	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}post/list?category=1">Notice</a></li>
 	        <li class="mx-3 nav-item dropdown">
 	            <a class="nav-link dropdown-toggle text-warning" href="#" role="button" data-bs-toggle="dropdown">Board</a>
 	            <ul class="dropdown-menu">
 	                <li class="dropdown-item"><a href="${cp}post/list">Free</a></li>
-	                <li class="dropdown-item"><a href="${cp}post.html?category=3">Libraries</a></li>
-	                <li class="dropdown-item"><a href="${cp}gallery">Gallery</a></li>
+	                <li class="dropdown-item"><a href="${cp}post/list?category=3">Libraries</a></li>
+	                <li class="dropdown-item"><a href="${cp}post/list?category=4">Gallery</a></li>
 	            </ul>
 	        </li>
 	    </ul>
