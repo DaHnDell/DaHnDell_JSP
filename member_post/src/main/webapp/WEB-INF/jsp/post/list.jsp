@@ -43,7 +43,7 @@
 						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="list?page=${pageDto.startPage- 1}&amount=${pageDto.criteria.amount}&category=${pageDto.criteria.category}"><i class="fa-solid fa-angles-left text-primary"></i></a></li>
 					</c:if>					
 					<c:if test="${pageDto.prev}">
-						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
+						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="list?page=${pageDto.criteria.page-1}&${pageDto.criteria.qs}"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
 					</c:if>					
 					<c:forEach begin ="${pageDto.startPage}" end="${pageDto.endPage}" var="page">
 						<li class="page-item ${page == pageDto.criteria.page ? 'active' : ''}"><a class="page-link link-outline-secondary link-dark" href="list?page=${page}&category=${pageDto.criteria.category}">${page}</a></li>

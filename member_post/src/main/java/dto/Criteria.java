@@ -61,25 +61,23 @@ public class Criteria extends HttpServlet{
 	
 	// QueryStyring Generator (will be used at el)
 	public static void main(String[] args) {
-		new Criteria(null);
+		System.out.println(new Criteria().getQs());
 	}
 	
 	// Page Include
 	public String getQs2() {
-		return "page=" + page + "&" + getQs(); 
+		return "page=" + page + "&" + getQs();
 	}
 	
 	
 	// Page disInclude
 	public String getQs() {
-		String[] strs = null;
 		Field[] fields = getClass().getDeclaredFields();
-		Stream.of(fields).map(f -> {
+		String[] strs = new String[4];
+		Stream.of(fields).filter(f->!f.getName().equals("page")).map(f -> {
 			String nullString = null;
 			try {
-				if(f.getName().equals("page")) {
-					return f.getName() + "=" + (f.get(this) == null ? "" : f.get(this));
-				}
+				nullString = f.getName() + "=" + (f.get(this) == null ? "" : f.get(this));
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
