@@ -12,7 +12,7 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed"></i> POST WRITE</h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed text-primary"></i> POST WRITE</h2>
 			</div>
             <div class="my-3 col-md-9 mx-auto border border-dark">
 				<form method="post">

@@ -1,5 +1,8 @@
 package dto;
 
+import lombok.Data;
+
+@Data
 public class PageDto {
 	
 	private Criteria criteria = new Criteria();
@@ -9,6 +12,12 @@ public class PageDto {
 	private int HiddenPage;
 	private int showNum;
 	private int pageCount; // 페이지 버튼 갯수
+	// 이전 이후 계산용 필드
+	private boolean prev; 
+	private boolean next;
+	private boolean dblPrev;
+	private boolean dblNext;
+	
 	
 	public PageDto(int total) {
 		this(new Criteria(), total);
@@ -28,14 +37,17 @@ public class PageDto {
 
 		this.HiddenPage = endPage - pageCount; 
 		
-		int realEnd = (total +criteria.getAmount()-1) / criteria.getAmount();
+		int realEnd = (total +criteria.getAmount()-1) / criteria.getAmount(); 
 		
 		if(realEnd < endPage) {
 			endPage = realEnd;
 		}
 		
+		prev = criteria.getPage() > 0 ;
+		next = criteria.getPage() < endPage;
+		dblPrev = startPage > 1;
+		dblNext = endPage < realEnd;
 	}
-
 	
 	public static void main(String[] args) {
 		PageDto dto = new PageDto(255);
@@ -47,7 +59,22 @@ public class PageDto {
 		return "PageDto [criteria=" + criteria + ", total=" + total + ", startPage=" + startPage + ", endPage="
 				+ endPage + ", HiddenPage=" + HiddenPage + "]";
 	}
+
+
 	
+	
+//	public int pageOffset() {
+//		int next = criteria.getPage();
+//		boolean flag = true;
+//		// 페이지 수
+//		
+//		while(flag) {
+//			
+//		}
+//		// next * amount - amount
+//		
+//		return next;
+//	}
 	
 	
 }

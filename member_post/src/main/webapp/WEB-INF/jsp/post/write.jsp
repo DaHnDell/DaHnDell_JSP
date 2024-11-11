@@ -12,9 +12,9 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed"> </i> WRITE POST</h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-feather-pointed text-primary"> </i> WRITE POST</h2>
 			</div>
-            <div class="my-3 col-md-9 mx-auto border border-dark">
+            <div class="my-3 col-md-9 mx-auto border border-secondary p-4 rounded">
 				<form method="post">
 	                <label for="title" class="form-label mt-3"><i class="fa-solid fa-font text-primary"></i><b> Title </b></label>
 	                <input type="text" class="form-control" id="title" placeholder="input title" name="title">

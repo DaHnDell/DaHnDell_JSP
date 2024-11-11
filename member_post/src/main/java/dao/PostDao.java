@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import utils.DBConn;
 import vo.Post;
@@ -62,21 +63,48 @@ public class PostDao {
 		return post;
 	}
 	
-	public List<Post> selectList(){
-		List<Post> posts = new ArrayList<Post>();
-		String sql = "select pno, title, writer, view_cnt, regdate from tbl_post order by 1 desc";
+	public int getCount(Criteria cri){
+		String sql = "select count(*) as cnt\r\n"
+				+ "from tbl_post\r\n"
+				+ "where cno = ?;";
 		try (Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, cri.getCategory());
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+			rs.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public List<Post> selectList(Criteria cri){
+		List<Post> posts = new ArrayList<Post>();
+		String sql = "select pno, title, writer, view_cnt, regdate, cno \r\n"
+				+ "from tbl_post\r\n"
+				+ "where cno = ?\r\n"
+				+ "order by 1 desc \r\n"
+				+ "limit ? offset ?";
+//		System.out.println(sql);
+//		System.out.println(cri.getOffSet());
+		try (Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, cri.getCategory());
+			pstmt.setInt(2, cri.getAmount());
+			pstmt.setInt(3, cri.getOffSet());
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int idx = 1;
 				Post post = Post
-					.builder()
-					.pno(rs.getLong(idx++))
-					.title(rs.getString(idx++))
-					.writer(rs.getString(idx++))
-					.viewCnt(rs.getLong(idx++))
-					.regDate(rs.getDate(idx++))
-					.build();
+						.builder()
+						.pno(rs.getLong(idx++))
+						.title(rs.getString(idx++))
+						.writer(rs.getString(idx++))
+						.viewCnt(rs.getLong(idx++))
+						.regDate(rs.getDate(idx++))
+						.cno(rs.getInt(idx++))
+						.build();
 				posts.add(post);
 			}
 			rs.close();
@@ -163,6 +191,13 @@ public class PostDao {
 	
 	public static void main(String[] args) {
 		PostDao dao = new PostDao();
+		Criteria cri = new Criteria(2, 10, 2);
+		
+		dao.selectList(cri).forEach(System.out::println);
+		System.out.println("=======count=======");
+		System.out.println(dao.getCount(cri));
+		
+		
 		
 //		for(int i = 0; i < 10; i++) {
 //			int j = dao.insert(Post.builder().writer("abcd").title("title + " + (i + 1)).content("Content " + i + 1).build());
@@ -188,6 +223,5 @@ public class PostDao {
 //		post = dao.selectOne(10L);
 //		System.out.println(post);
 		
-//		new PostDao().selectList().forEach(System.out::println);
 	}
 }

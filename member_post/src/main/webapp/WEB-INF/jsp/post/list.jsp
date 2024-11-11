@@ -12,10 +12,10 @@
 		<hr>
 		<main class="container">
 			<div class="clearfix my-4">
-				<h2 class="fw-bold text-big"><i class="fa-solid fa-book"></i> POSTS</h2>
+				<h2 class="fw-bold text-big"><i class="fa-solid fa-book text-primary"></i> POSTS</h2>
 				<a href="write" class="btn btn-outline-dark btn-warning float-end fw-bold">WRITE POST</a>
 			</div>
-            <table class="table table-hover text-center border">
+            <table class="table table-hover text-center border round">
                 <thead>
                 <tr>
                     <th style="width: 10%;">postNo</th>
@@ -37,12 +37,19 @@
                 </c:forEach>
                 </tbody>
 			</table>
+			${pageDto}
                 <ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#">Prev</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angles-left text-primary"></i></a></li>
+					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
+					
+					<c:forEach begin ="${pageDto.startPage}" end="${pageDto.endPage}" var="page">
+						<li class="page-item ${page == pageDto.criteria.page ? 'active' : ''}"><a class="page-link link-outline-secondary link-dark" href="list?page=${page}&category=${pageDto.criteria.category}">${page}</a></li>
+					</c:forEach>
+					
+<!--  					<li class="page-item"><a class="page-link link-outline-secondary link-dark" href="#">2</a></li>
+					<li class="page-item"><a class="page-link link-outline-secondary link-dark" href="#">3</a></li> -->
+					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angle-right text-primary"></i></a></li>
+					<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="#"><i class="fa-solid fa-angles-right text-primary"></i></a></li>
 				</ul>
 		</main>
 		<hr>

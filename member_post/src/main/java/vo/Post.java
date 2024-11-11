@@ -7,28 +7,29 @@ import lombok.Data;
 @Data
 @Builder
 public class Post {
-	private final Long pno;
-	private final String title;
-	private final String writer;
-	private final String content;
-	private final Long viewCnt;
-	private final Date regDate;
+	private final Long pno; // 게시글 번호
+	private final String title; // 게시글 제목
+	private final String writer; // 게시글 작성자
+	private final String content; // 게시글 내용
+	private final Long viewCnt; // 게시글 조회수
+	private final Date regDate; // 게시글 등록일
 	private final Date updateDate;
+	private final int cno;
 
 //	public final Post() {
 //		
 //	}
 	
-	private Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate) {
-		
-		this.pno = pno;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.viewCnt = viewCnt;
-		this.regDate = regDate;
-		this.updateDate = updateDate;
-	}
+//	private Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate) {
+//		
+//		this.pno = pno;
+//		this.title = title;
+//		this.writer = writer;
+//		this.content = content;
+//		this.viewCnt = viewCnt;
+//		this.regDate = regDate;
+//		this.updateDate = updateDate;
+//	}
 	
 //	public static P builder() {
 //		return new P();

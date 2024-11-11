@@ -351,3 +351,6 @@ jstl = fmt, fn 등의 기능들도 있음.
 
 contextpath = /memeber_post
 
+현재 위치랑 한 페이지당 개수
+
+
