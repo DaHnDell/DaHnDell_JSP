@@ -28,4 +28,9 @@
   	delete from tbl_post where pno = #{pno}
   </update>
   
+  <insert id="insert">
+	insert into tbl_post(title, writer, content, cno) 
+	values(#{title}, #{writer}, #{content}, #{cno})
+  </insert>
+  
 </mapper>

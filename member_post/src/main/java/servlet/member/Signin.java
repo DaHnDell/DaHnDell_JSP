@@ -60,6 +60,7 @@ public class Signin extends HttpServlet{
 			//url 파라미터 여부에 따른 리디렉션 페이지 지정
 			String redirectURL = req.getContextPath() + "/index";
 			String nexturl = req.getParameter("url");
+			System.out.println(req.getParameter("url"));
 			if(nexturl != null && !nexturl.equals("")) {
 				redirectURL = URLDecoder.decode(nexturl, "utf-8");
 			}

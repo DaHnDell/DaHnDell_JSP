@@ -3,7 +3,7 @@ package servlet.common;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +17,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import vo.Attach;
+
 @WebServlet("/upload")
 public class Upload extends HttpServlet{
 	@Override
@@ -26,9 +28,9 @@ public class Upload extends HttpServlet{
 		factory.setRepository(new File("c:/upload/tmp"));
 		// 파일 이름 생성 규칙을 알아야 함.
 		ServletFileUpload upload = new ServletFileUpload(factory);
-		List<FileItem> items;
+		List<Attach> attachs = new ArrayList<>();
 		try {
-			items = upload.parseRequest(req);
+			List<FileItem> items = upload.parseRequest(req);
 			for(FileItem item : items) {
 //			items.forEach(item->{
 //				item.getFieldName() files
@@ -41,13 +43,16 @@ public class Upload extends HttpServlet{
 				if(dotIdx != -1) {
 					origin.substring(dotIdx);
 				}
+				String uuid = UUID.randomUUID().toString();
 				String realName = UUID.randomUUID() + ext;
-				File parentPath = new File("c:/upload", getTodayStr());
+				String path = getTodayStr();
+				File parentPath = new File("c:/upload", path);
 				if(!parentPath.exists()) {
 					parentPath.mkdirs();
 					// s 안붙은 애들은 마지막 하나만 만들어주는 메서드라서 무조건 s 붙은걸로 써야 함.
 				}
 				item.write(new File(parentPath, realName));
+				attachs.add(Attach.builder().uuid(realName).path(path).origin(origin).build());
 				
 			}
 		} catch (Exception e) {
@@ -62,3 +67,5 @@ public class Upload extends HttpServlet{
 	
 
 }
+
+
