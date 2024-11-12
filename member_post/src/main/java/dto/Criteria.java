@@ -28,7 +28,7 @@ public class Criteria extends HttpServlet{
 		return "Criteria [page=" + page + ", amount=" + amount + "]";
 	}
 	
-	public int getOffSet() {
+	public int getOffset() {
 		return (page - 1) * amount;
 	}
 	

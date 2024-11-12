@@ -93,7 +93,7 @@ public class PostDao {
 		try (Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, cri.getCategory());
 			pstmt.setInt(2, cri.getAmount());
-			pstmt.setInt(3, cri.getOffSet());
+			pstmt.setInt(3, cri.getOffset());
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int idx = 1;
