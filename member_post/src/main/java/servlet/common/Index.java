@@ -16,6 +16,5 @@ public class Index extends HttpServlet{
 		req.getRequestDispatcher("/WEB-INF/jsp/member/index.jsp").forward(req, resp);
 	}
 }
-
 // 1 - 로그인 성공 시 성공한 id를 기억한다. 쿠키 활용 
 // 2 - post vo, dao 만들기. crud 
