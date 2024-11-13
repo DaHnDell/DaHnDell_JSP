@@ -30,7 +30,17 @@
                 
                 <label for="updatedate" class="form-label mt-3"><i class="fa-solid fa-file-signature text-primary"></i><b> Altered date </b></label>
                 <input type="text" class="form-control" id="updatedate" placeholder="updatedate" name="updatedate" value="${post.updateDate}" disabled>
-
+				<label class="form-label mt-3"><i class="fa-solid fa-paperclip text-primary"></i><b> Attach </b></label>
+                <input type="file" id="attach" name="files" class="d-none" multiple>
+				
+				<ul class="list-group attach-result">
+					<c:if test="${empty post.attachs}">
+					<li class="list-group-item">no attachs.</li>
+					</c:if>
+					<c:forEach items="${post.attachs}" var="a">
+						<li class="list-group-item"><a href="${cp}download?uuid=${a.uuid}&origin=${a.origin}&path=${a.path}">${a.origin}</a></li>
+					</c:forEach>
+				</ul>
              <div class="text-center my-5">
              		<c:if test="${post.writer == member.id}">
              		<a href="modify?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-dark"> ALTER </a>

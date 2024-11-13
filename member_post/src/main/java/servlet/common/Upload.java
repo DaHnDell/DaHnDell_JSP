@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import vo.Attach;
 
@@ -44,7 +45,7 @@ public class Upload extends HttpServlet{
 					origin.substring(dotIdx);
 				}
 				String uuid = UUID.randomUUID().toString();
-				String realName = UUID.randomUUID() + ext;
+				String realName = uuid + ext;
 				String path = getTodayStr();
 				File parentPath = new File("c:/upload", path);
 				if(!parentPath.exists()) {
@@ -53,8 +54,10 @@ public class Upload extends HttpServlet{
 				}
 				item.write(new File(parentPath, realName));
 				attachs.add(Attach.builder().uuid(realName).path(path).origin(origin).build());
-				
 			}
+			resp.setContentType("application/json; charset-utf-8");
+			resp.getWriter().print(new ObjectMapper().writeValueAsString(attachs));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -10,4 +10,7 @@
   	insert into tbl_member(id, pw, name, email, road_addr, detail_addr) 
   	values(#{id}, #{pw}, #{name}, #{email}, #{roadAddr}, #{detailAddr})
   </insert>
+   <delete id="delete">
+     delete from tbl_member where id = #{id}
+ </delete>
 </mapper>

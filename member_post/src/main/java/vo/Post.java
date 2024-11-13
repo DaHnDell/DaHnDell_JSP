@@ -1,11 +1,16 @@
 package vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class Post {
 	private final Long pno; // 게시글 번호
 	private final String title; // 게시글 제목
@@ -15,12 +20,30 @@ public class Post {
 	private final Date regDate; // 게시글 등록일
 	private final Date updateDate;
 	private final int cno;
+	private final boolean attachFlag;
 
+	@Builder.Default
+	private List<Attach> attachs = new ArrayList<>();
 //	public final Post() {
 //		
 //	}
+
+
+	public Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate,
+			int cno, boolean attachFlag) {
+		super();
+		this.pno = pno;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.viewCnt = viewCnt;
+		this.regDate = regDate;
+		this.updateDate = updateDate;
+		this.cno = cno;
+		this.attachFlag = attachFlag;
+	}
 	
-//	private Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate) {
+//	private Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate, ) {
 //		
 //		this.pno = pno;
 //		this.title = title;
