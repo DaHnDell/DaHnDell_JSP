@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import utils.Commons;
 import vo.Attach;
 
 @WebServlet("/upload")
@@ -26,8 +27,9 @@ public class Upload extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(1024*1024);
-		factory.setRepository(new File("c:/upload/tmp"));
-		// 파일 이름 생성 규칙을 알아야 함.
+		factory.setRepository(new File(Commons.UPLOAD_PATH, "tmp"));
+//		factory.setRepository(new File(Commons.UPLOAD_PATH + File.separator +  "tmp"));
+		// 파일 이름 생성 규칙을 알아야 함. File.seperator = 상수에 지정되는 값이 실행 시에 지정됨. 비초기화 상수.
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		List<Attach> attachs = new ArrayList<>();
 		try {
@@ -47,7 +49,7 @@ public class Upload extends HttpServlet{
 				String uuid = UUID.randomUUID().toString();
 				String realName = uuid + ext;
 				String path = getTodayStr();
-				File parentPath = new File("c:/upload", path);
+				File parentPath = new File(Commons.UPLOAD_PATH, path);
 				if(!parentPath.exists()) {
 					parentPath.mkdirs();
 					// s 안붙은 애들은 마지막 하나만 만들어주는 메서드라서 무조건 s 붙은걸로 써야 함.

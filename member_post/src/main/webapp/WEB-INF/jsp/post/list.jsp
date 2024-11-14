@@ -47,7 +47,7 @@
                 <ul class="pagination justify-content-center">
 					<c:if test="${pageDto.dblPrev}">
 						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="list?page=${pageDto.startPage- 1}&${pageDto.criteria.qs}"><i class="fa-solid fa-angles-left text-primary"></i></a></li>
-					</c:if>					
+					</c:if>	
 					<c:if test="${pageDto.prev}">
 						<li class="page-item"><a class="page-link link-outline-secondary link-warning" href="list?page=${pageDto.criteria.page-1}&${pageDto.criteria.qs}"><i class="fa-solid fa-angle-left text-primary"></i></a></li>
 					</c:if>					

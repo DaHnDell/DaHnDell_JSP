@@ -425,3 +425,20 @@ map 에선 map 이름 적기.
 비동기 처리
 장점 - 클라쪽 코드가 복잡해지지만, 유지보수가 간결해짐.
 REST 형식의 파일이고, JSON에 업로드할 파일의 정보.
+]
+unicode (기반)
+utf 8 한글 - (3byte)
+utf 16 한글 - (1byte)
+
+mb4 - 이모지까지 표현해서 한 글자 4바이트
+
+
+레스트 처리를 할때 URI 수정하는 것이 매우중요
+
+
+
+inputStream = > read 하는 애.
+reader = > read 하는 애
+read = > 메서드
+
+OutputStream = > write 하는 애.
