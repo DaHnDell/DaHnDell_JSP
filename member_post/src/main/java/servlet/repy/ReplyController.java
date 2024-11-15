@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import service.ReplyServceImpl;
 import service.ReplyService;
@@ -17,7 +18,7 @@ import vo.Reply;
 @WebServlet("/reply/*")
 public class ReplyController extends HttpServlet{
 	private ReplyService service = ReplyServceImpl.getInstance();
-	private Gson gson = new Gson(); // 제이슨 객체를 만드는 아주 기본적인 방식
+	private Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd-HH:mm:ss").create(); // 제이슨 객체를 만드는 아주 기본적인 방식
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String s = req.getRequestURI();
