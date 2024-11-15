@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.codehaus.jackson.map.ObjectMapper;
+
+import com.google.gson.Gson;
 
 import utils.Commons;
 import vo.Attach;
@@ -58,7 +59,7 @@ public class Upload extends HttpServlet{
 				attachs.add(Attach.builder().uuid(realName).path(path).origin(origin).build());
 			}
 			resp.setContentType("application/json; charset-utf-8");
-			resp.getWriter().print(new ObjectMapper().writeValueAsString(attachs));
+			resp.getWriter().print(new Gson().toJson(attachs));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

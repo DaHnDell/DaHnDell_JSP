@@ -40,6 +40,10 @@
 					<c:forEach items="${post.attachs}" var="a">
 						<li class="list-group-item"><a href="${cp}download?uuid=${a.uuid}&origin=${a.origin}&path=${a.path}">${a.origin}</a></li>
 					</c:forEach>
+					<label class="form-label mt-3"><i class="fa-regular fa-comment-dots text-primary"></i> <b>Reply</b> </label>
+					<ul class="replies">
+					</ul>
+
 				</ul>
              <div class="text-center my-5">
              		<c:if test="${post.writer == member.id}">
@@ -50,6 +54,33 @@
              </div>
             </div>
 		</main>
+		<script src="${cp}js/reply.js"></script>
+		<script>
+			const pno = '${post.pno}';
+			replyService.list(pno, function(data) {
+				console.log(data);
+				let str="";
+				for(let i in data){
+					str += makeLi(data[i]);
+				}
+				$(".replies").append(str);
+			});
+			replyService.write({content:'abcd'});
+
+			function makeLi(reply) {
+                return `<li class="list-group-item" data-rno="\${reply.rno}">
+                            <input type="checkbox" class="form-check-input float-sm-end">
+                            <a href="#" class="text-decoration-none text-success">
+                                <p class="text-black fw-bold mt-3 text-truncate">\${reply.content}</p>
+                                <div class="clearfix text-secondary">
+                                    <span class="float-start">\${reply.writer}</span>
+                                    <span class="float-end small small small">\${reply.regDate}</span>
+                                    <a class=" float-end small small small text-danger mx-2">DEL</a>
+                                </div>
+                            </a>
+                        </li>`;
+            }
+		</script>
 		<hr>
 		<jsp:include page="../common/footer.jsp" />
 	</div>
