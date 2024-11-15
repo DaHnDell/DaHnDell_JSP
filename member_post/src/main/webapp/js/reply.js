@@ -1,9 +1,12 @@
 // const replyService =  {};
 const replyService = (function() { 
     const url = "/member_post/reply";
-    function write(reply){
+    function write(reply, callback){
         console.log(reply);
-    }
+		if(callback){
+           callback();
+    	}
+	}
     function list(pno, callback){
         // 비동기 : ajax
         $.getJSON(url + "/list/" + pno).done(function(data){
@@ -21,7 +24,6 @@ const replyService = (function() {
         //     }
         // })
     }
-
     return {write, list}    
 })();
 // 함수 내부는 결국 내부로부터 보호받는 공간. 
