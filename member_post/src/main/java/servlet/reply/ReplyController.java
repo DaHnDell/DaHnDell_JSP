@@ -1,4 +1,4 @@
-package servlet.repy;
+package servlet.reply;
 
 import java.io.IOException;
 
@@ -38,7 +38,7 @@ public class ReplyController extends HttpServlet{
 			Long rno = Long.valueOf(s);
 			ret = service.findBy(rno);
 		}
-		resp.setContentType("application/json; charset-utf-8");
+		resp.setContentType("application/json; charset=utf-8");
 		resp.getWriter().print(gson.toJson(ret));
 	}
 
@@ -51,16 +51,18 @@ public class ReplyController extends HttpServlet{
 //		Reply reply = gson.fromJson(str, Reply.class);
 //		gson.fromJson(req.getReader(), Reply.class);
 //		service.write(reply);
-		service.write(gson.fromJson(req.getReader(), Reply.class));
+		Reply reply = gson.fromJson(req.getReader(), Reply.class);
+		System.out.println(reply);
+		service.write(reply);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		char[] chs = new char[req.getContentLength()];
 		req.getReader().read(chs);
-		String str = new String(chs);
+//		String str = new String(chs);
 		
-		Reply reply = gson.fromJson(str, Reply.class);
+		Reply reply = gson.fromJson(req.getReader(), Reply.class);
 		service.modify(reply);
 	}
 
@@ -83,7 +85,7 @@ public class ReplyController extends HttpServlet{
 			Long rno = Long.valueOf(uri);
 			ret = service.remove(rno);
 		}
-		resp.setContentType("application/json; charset-utf-8");
+		resp.setContentType("application/json; charset=utf-8");
 		resp.getWriter().print(gson.toJson(ret));
 	}
 	
