@@ -29,7 +29,19 @@ public class ReplyController extends HttpServlet{
 			int tmpIdx = s.lastIndexOf("/");
 			Long pno = 0L;
 			if(tmpIdx != -1) {
-				pno = Long.valueOf(s.substring(tmpIdx+1));
+				String stmp = s.substring(tmpIdx+1);
+				String[] stmps = stmp.split("/");
+				
+				switch(stmps.length) {
+				case 0 :
+				case 2 :
+					break;
+				case 3 :
+					break;
+				}
+				
+//				pno = Long.valueOf(s.substring(tmpIdx+1));
+				
 			}
 			ret = service.list(pno);
 			System.out.println(service.list(pno));
