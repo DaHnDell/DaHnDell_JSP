@@ -56,7 +56,7 @@ public class ReplyController extends HttpServlet{
 //				System.out.println(cri);
 //				pno = Long.valueOf(s.substring(tmpIdx+1));
 //				
-				ret = service.list(pno, cri);
+				ret = service.list(pno, cri, req.getSession().getAttribute("member"));
 //				System.out.println(service.list(pno));
 			}
 		}

@@ -40,26 +40,34 @@
 					<li class="list-group-item">no attachs.</li>
 					</c:if>
 					<c:forEach items="${post.attachs}" var="a">
-						<li class="list-group-item"><a href="${cp}download?uuid=${a.uuid}&origin=${a.origin}&path=${a.path}">${a.origin}</a></li>
+						<li class="list-group-item my-1"><a href="${cp}download?uuid=${a.uuid}&origin=${a.origin}&path=${a.path}">${a.origin}</a></li>
 					</c:forEach>
+					<div class="clearfix mt-3 my-1">
+						<label class="form-label float-start"><i class="fa-regular fa-comment-dots text-warning"></i> <b>My Reply</b> </label>
+					</div>
+					<ul class="list-group-small my-replies my-3 " data-bs-theme="dark">
+
+					</ul>
+					
+					<!-- 전체 댓글 구간 -->
 					<div class="clearfix my-2">
 						<label class="form-label float-start"><i class="fa-regular fa-comment-dots text-primary"></i> <b>Reply</b> </label>
-						<button type="button" class="btn btn-primary btn-sm float-end" id="btnWriteReply"> Write Reply </button>						
+						<button type="button" class="btn btn-outline-warning btn-sm float-end border-dark" id="btnWriteReply"> Write Reply </button>						
 					</div>
-					<ul class="replies">
+					<ul class="list-group-small replies">
 						
 					</ul>
 				</ul>
-				<div class="d-grid my-3 btn-more-reply">
-					<button class="btn btn-warning"> more.. </button>
+				<div class="d-grid my-3 ">
+					<button class="btn btn-warning btn-more-reply"> more.. </button>
 				</div>
 				
              	<div class="text-center mt-5 mb-2">
              		<c:if test="${post.writer == member.id}">
-             		<a href="modify?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-dark"> ALTER </a>
-             		<a href="remove?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE </a>
+             		<a href="modify?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-dark"> ALTER POST </a>
+             		<a href="remove?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE POST </a>
              		</c:if>
-                    <a href="list?${criteria.qs2}" class="btn btn-outline-warning border-dark">RETURN</a>
+                    <a href="list?${criteria.qs2}" class="btn btn-outline-warning border-dark">RETURN LIST</a>
              	</div>
             </div>
 		</main>
@@ -70,11 +78,27 @@
 			// 목록 조회
 			function list(cri){
 				replyService.list(pno, cri, function(data) {
-					let str="";
-					for(let i in data){
-						str += makeLi(data[i]);
+					if(!data.list.length){
+						$(".btn-more-reply")
+						.prop("disabled", true)
+						.text("hello, no more replies to show.")
+						.removeClass("btn-warning")
+						.addClass("btn-secondary");
+						return;
 					}
+					let str="";
+					let myStr="";
+					for(let i in data.list){
+						str += makeLi(data.list[i]);
+					}
+					for(let i in data.myList){
+						myStr += makeLi(data.myList[i]);
+					}
+					console.log(data.myList);
 					$(".replies").append(str);
+					$(".my-replies").html(myStr);
+					// 추가 Css 작업
+					$(".my-replies .text-secondary, .my-replies .text-black").removeClass("text-secondary text-black");
 				});
 				// replyService.write({content:'abcd'});
 			}
@@ -93,7 +117,7 @@
             }
 			
 			// li 클릭 시 이벤트
-			$(".replies").on("click", "li", function(){
+			$(".replies, .my-replies").on("click", "li", function(){
 				//console.log($(this).data("rno"));
 				const rno = $(this).data("rno");
 				replyService.view(rno, function(data){
@@ -102,7 +126,7 @@
 					$("#replyModal").data("rno", rno).modal("show");
 					$("#replyContent").val(data.content);
 					$("#replyWriter").val(data.writer);
-					console.log(data);
+					$(".replies").append(str);
 				})
 			});
 			
@@ -111,11 +135,12 @@
 				if(! confirm("삭제하시겠습니까?")){
 					return false;
 				}
-				const rno = $(this).closest("li").data("rno");
+				const $li = $(this).closest("li"); 
+				const rno = $li.data("rno");
 				//console.log($(this).data("rno"))
 				replyService.remove(rno, function(data){
 					alert("삭제 되었습니다.");
-					list();
+					$li.remove();
 				});
 				return false; // 기본 이벤트도 안하고, 이벤트 전달도 안하고, 기본 이벤트도 없엔다.
 				// 하지만 false 키워드는 매우 강력한 키워드이므로 남발 불가임. 
@@ -134,20 +159,24 @@
 				// 댓글 작성(반영) 버튼 클릭시
 				$("#btnReplySubmit").click(function(){
 					const writer = $("#replyWriter").val();
-					const content = $("#replyContent").val();;
+					const content = $("#replyContent").val();
 					const reply = {pno, writer, content};
 					replyService.write(reply, function(data){
 						$("#replyModal").modal("hide");
-						list();
+						$(`.replies li[data-rno='\${writer}'] p`).text(writer);
+						$(`.replies li[data-rno='\${content}'] p`).text(content);
+						const $li = $(this).closest("li");
+						console.log($li);
 					});
 				});
 				
-				// 댓글 삭제(반영) 버튼 클릭시
+				// 댓글 상세보기 - 삭제(반영) 버튼 클릭시
 				$("#btnReplyRemoveSubmit").click(function(){
 					const rno = $("#replyModal").data("rno");
+					const $li = $(`.replies li[data-rno='\${rno}']`);
 					replyService.remove(rno, function(data){
 						$("#replyModal").modal("hide");
-						list();
+						$li.remove();
 					});
 				});
 				
@@ -165,7 +194,7 @@
 					const reply = {rno, content};
 					replyService.modify(reply, function(data){
 						$("#replyModal").modal("hide");
-						location.reload();
+						$(`.replies li[data-rno='\${rno}'] p`).text(content);
 					});
 				});
 			})
@@ -201,7 +230,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-warning btn-outline-dark" id="btnReplySubmit">Post</button>
 	        <button type="button" class="btn btn-warning btn-outline-dark" id="btnReplyModifySubmit">Modify</button>
-	        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="btnRemoveSubmit">Remove</button>
+	        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="btnReplyRemoveSubmit">Remove</button>
 	      </div>
 	        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
 	    </div>

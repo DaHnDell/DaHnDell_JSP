@@ -17,8 +17,9 @@ public interface ReplyMapper {
 	
 	Reply selectOne(Long rno);
 	List<Reply> selectList(@Param("pno") Long pno, @Param("cri") ReplyCri cri); // 댓글은 포스트에 종속된 존재이기 때문임.
-	
 	List<Reply> selectMyList(String id);
+	List<Reply> selectListByMe(Reply reply);
+	
 	
 //	int increaseLikes(Long rno);
 }
