@@ -17,13 +17,20 @@ const replyService = (function() {
 	    	}
         })
 	}
-    function list(pno, callback){
+    function list(pno, cri, callback){
+		let reformedUrl = url + "/list/" + pno;
+		if(cri && cri.lastRno){
+			reformedUrl += "/" + cri.lastRno;
+			if(cri.amount){
+				reformedUrl += "/" + cri.amount;
+			}
+		}
         // 비동기 : ajax
-        $.getJSON(url + "/list/" + pno).done(function(data){
+        $.getJSON(reformedUrl).done(function(data){
             if(callback){
                 callback(data);
             }
-        })
+        });
 
         // $.ajax({
         //     url : url + "/list/" + pno,

@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import dto.ReplyCri;
 import vo.Reply;
 
 public interface ReplyService {
@@ -12,7 +13,7 @@ public interface ReplyService {
 	int removeAll(Long pno);
 	
 	Reply findBy(Long rno);
-	List<Reply> list(Long pno); // 댓글은 포스트에 종속된 존재이기 때문임.
+	List<Reply> list(Long pno, ReplyCri cri); // 댓글은 포스트에 종속된 존재이기 때문임.
 	List<Reply> myList(String id);
 	
 //	int increaseLikes(Long rno);

@@ -1,6 +1,7 @@
 package servlet.reply;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dto.ReplyCri;
 import service.ReplyServceImpl;
 import service.ReplyService;
 import vo.Reply;
@@ -23,30 +25,42 @@ public class ReplyController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String s = req.getRequestURI();
 		s = s.replace(req.getContextPath()+"/reply/", "");
-		System.out.println(s);
+//		System.out.println(s);
 		Object ret = null;
 		if(s.startsWith("list")) { // 목록 조회
-			int tmpIdx = s.lastIndexOf("/");
+			int tmpIdx = s.indexOf("/");
+			// list 로 잘라도 된다.
 			Long pno = 0L;
 			if(tmpIdx != -1) {
 				String stmp = s.substring(tmpIdx+1);
+//				System.out.println(stmp);
 				String[] stmps = stmp.split("/");
+//				System.out.println(Arrays.toString(stmps));
+				// /reply/list/#{pno}
+				// /reply/list/#{pno}/#{lastRno}
+				// /reply/list/#{pno}/#{lastRno}/#{amount}
+				ReplyCri cri = new ReplyCri();
 				
 				switch(stmps.length) {
-				case 0 :
+				
+				case 3 : 
+					cri.setAmount(Integer.parseInt(stmps[2]));
 				case 2 :
-					break;
-				case 3 :
+					cri.setLastRno(Long.parseLong(stmps[1]));
+				case 1 :
+					pno = Long.valueOf(stmps[0]);
+
+				default :
 					break;
 				}
-				
+//				System.out.println(cri);
 //				pno = Long.valueOf(s.substring(tmpIdx+1));
-				
+//				
+				ret = service.list(pno, cri);
+//				System.out.println(service.list(pno));
 			}
-			ret = service.list(pno);
-			System.out.println(service.list(pno));
 		}
-		else {
+		else { // 단일 조회
 			Long rno = Long.valueOf(s);
 			ret = service.findBy(rno);
 		}
@@ -91,7 +105,7 @@ public class ReplyController extends HttpServlet{
 				pno = Long.valueOf(uri.substring(tmpIdx+1));
 			}
 			ret = service.removeAll(pno);
-			System.out.println(service.list(pno));
+//			System.out.println(service.list(pno));
 		}
 		else { // 단일 조회
 			Long rno = Long.valueOf(uri);

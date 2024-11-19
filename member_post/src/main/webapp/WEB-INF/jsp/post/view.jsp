@@ -17,7 +17,7 @@
 				<h2 class="fw-bold text-big"><i class="fa-solid fa-book-open text-primary"></i> POST VIEW </h2>
 				<a href="/write" class="btn btn-outline-dark btn-warning float-end fw-bold">POST</a>
 			</div>
-            <div class="my-3 col-md-9 mx-auto">
+            <div class="my-3 mx-auto">
                 <label for="title" class="form-label mt-3"><i class="fa-solid fa-font text-primary"></i><b> Title </b></label>
                 <input type="text" class="form-control" id="title" placeholder="input title" name="title" value="${post.title}"  disabled>
                 
@@ -47,15 +47,20 @@
 						<button type="button" class="btn btn-primary btn-sm float-end" id="btnWriteReply"> Write Reply </button>						
 					</div>
 					<ul class="replies">
+						
 					</ul>
 				</ul>
-             <div class="text-center mt-5 mb-2">
+				<div class="d-grid my-3 btn-more-reply">
+					<button class="btn btn-warning"> more.. </button>
+				</div>
+				
+             	<div class="text-center mt-5 mb-2">
              		<c:if test="${post.writer == member.id}">
              		<a href="modify?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-dark"> ALTER </a>
              		<a href="remove?pno=${post.pno}&${criteria.qs2}" class="btn btn-outline-danger border-dark" onclick="return confirm('Delete this post?')"> DELETE </a>
              		</c:if>
                     <a href="list?${criteria.qs2}" class="btn btn-outline-warning border-dark">RETURN</a>
-             </div>
+             	</div>
             </div>
 		</main>
 		<script src="${cp}js/reply.js"></script>
@@ -63,13 +68,13 @@
 			moment.locale("ko");
 			const pno = '${post.pno}';
 			// 목록 조회
-			function list(){
-				replyService.list(pno, function(data) {
+			function list(cri){
+				replyService.list(pno, cri, function(data) {
 					let str="";
 					for(let i in data){
 						str += makeLi(data[i]);
 					}
-					$(".replies").html(str);
+					$(".replies").append(str);
 				});
 				// replyService.write({content:'abcd'});
 			}
@@ -155,7 +160,7 @@
                     }
 					const content = $("#replyContent").val();
 					console.log(content);
-					const rno = $("#replyModal").data("rno")
+					const rno = $("#replyModal").data("rno");
 					console.log(rno)
 					const reply = {rno, content};
 					replyService.modify(reply, function(data){
@@ -164,6 +169,14 @@
 					});
 				});
 			})
+			
+			// 댓글 더보기 버튼 클릭 시
+			$(".btn-more-reply").click(function(){
+				const lastRno = $(".replies li:last").data("rno");
+				list({lastRno, amount:10});
+				// 키밸류가 똑같으면 그냥 알아서전달할거임.
+				console.log(lastRno)
+			});
 		</script>
 		<hr>
 		<jsp:include page="../common/footer.jsp" />
