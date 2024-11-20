@@ -73,10 +73,11 @@
 		</main>
 		<script src="${cp}js/reply.js"></script>
 		<script>
+		// 해결되지 않은 이슈 : 비 로그인 시 내 댓글 화면 처리, 내 댓글이 없을 시 처리
 			moment.locale("ko");
 			const pno = '${post.pno}';
 			// 목록 조회
-			function list(cri){
+			function list(cri, myOnly){
 				replyService.list(pno, cri, function(data) {
 					if(!data.list.length){
 						$(".btn-more-reply")
@@ -86,17 +87,25 @@
 						.addClass("btn-secondary");
 						return;
 					}
-					let str="";
+				
+					
 					let myStr="";
-					for(let i in data.list){
-						str += makeLi(data.list[i]);
-					}
 					for(let i in data.myList){
 						myStr += makeLi(data.myList[i]);
 					}
 					console.log(data.myList);
-					$(".replies").append(str);
 					$(".my-replies").html(myStr);
+					
+					if(myOnly){
+						return;
+					}
+					
+					let str="";
+					for(let i in data.list){
+						str += makeLi(data.list[i]);
+					}
+					$(".replies").append(str);
+					
 					// 추가 Css 작업
 					$(".my-replies .text-secondary, .my-replies .text-black").removeClass("text-secondary text-black");
 				});
@@ -126,12 +135,12 @@
 					$("#replyModal").data("rno", rno).modal("show");
 					$("#replyContent").val(data.content);
 					$("#replyWriter").val(data.writer);
-					$(".replies").append(str);
+					//$(".replies").append(str);
 				})
 			});
 			
 			// 삭제 시 이벤트
-			$(".replies").on("click", "li .btn-reply-remove", function(){
+			$(".replies, .my-replies").on("click", "li .btn-reply-remove", function(){
 				if(! confirm("삭제하시겠습니까?")){
 					return false;
 				}
@@ -141,6 +150,7 @@
 				replyService.remove(rno, function(data){
 					alert("삭제 되었습니다.");
 					$li.remove();
+					list(undefined, true);
 				});
 				return false; // 기본 이벤트도 안하고, 이벤트 전달도 안하고, 기본 이벤트도 없엔다.
 				// 하지만 false 키워드는 매우 강력한 키워드이므로 남발 불가임. 
@@ -165,8 +175,7 @@
 						$("#replyModal").modal("hide");
 						$(`.replies li[data-rno='\${writer}'] p`).text(writer);
 						$(`.replies li[data-rno='\${content}'] p`).text(content);
-						const $li = $(this).closest("li");
-						console.log($li);
+						list(undefined, true);
 					});
 				});
 				
@@ -177,7 +186,9 @@
 					replyService.remove(rno, function(data){
 						$("#replyModal").modal("hide");
 						$li.remove();
+						list(undefined, true);
 					});
+					
 				});
 				
 				// 최소한 모달이 rno 값을 알고 있어야 함.
@@ -195,6 +206,7 @@
 					replyService.modify(reply, function(data){
 						$("#replyModal").modal("hide");
 						$(`.replies li[data-rno='\${rno}'] p`).text(content);
+						list(undefined, true);
 					});
 				});
 			})

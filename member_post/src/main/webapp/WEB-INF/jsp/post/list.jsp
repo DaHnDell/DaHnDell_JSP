@@ -15,6 +15,40 @@
 				<h2 class="fw-bold text-big"><i class="fa-solid fa-book text-primary"></i> POSTS</h2>
 				<a href="write?${pageDto.criteria.qs2}" class="btn btn-outline-dark btn-warning float-end fw-bold">WRITE POST</a>
 			</div>
+			<form>
+				<input type="hidden" name="page" value="${pageDto.criteria.page}">
+				<input type="hidden" name="category" value="${pageDto.criteria.category}">
+				<div class="row my-2 p-3">
+					<div class="col-2">
+						<select class="form-select" name="type" >
+							<option value="T" ${pageDto.criteria.type == 'T' ? 'selected' : ''}>title</option>
+							<option value="C" ${pageDto.criteria.type == 'C' ? 'selected' : ''}>content</option>
+							<option value="W" ${pageDto.criteria.type == 'W' ? 'selected' : ''}>writer</option>
+							<option value="TC" ${pageDto.criteria.type == 'TC' ? 'selected' : ''}>title + content</option>
+							<option value="TW" ${pageDto.criteria.type == 'TW' ? 'selected' : ''}>title + writer</option>
+							<option value="CW" ${pageDto.criteria.type == 'CW' ? 'selected' : ''}>content + writer</option>
+							<option value="TCW" ${pageDto.criteria.type == 'TCW' ? 'selected' : ''}>title + content + writer</option>
+						</select>
+					</div>
+					<div class="col-1"></div>
+					<div class="col-6">
+						<div class="input-group mb-3">
+							<input class="form-control" type="text" placeholder="Search" name="keyword" value="${pageDto.criteria.keyword}">
+							<button class="btn btn-warning" type="submit">search</button>
+						</div>
+					</div>
+					<div class="col-1"></div>
+					<div class="col-2">
+						<select class="form-select d-inline" name="amount">
+						<option value="10" ${pageDto.criteria.amount == 10 ? 'selected' : ''}>show 10 posts</option>
+						<option value="20" ${pageDto.criteria.amount == 20 ? 'selected' : ''}>show 20 posts</option>
+						<option value="30" ${pageDto.criteria.amount == 30 ? 'selected' : ''}>show 30 posts</option>
+						<option value="50" ${pageDto.criteria.amount == 50 ? 'selected' : ''}>show 50 posts</option>
+						</select>
+					</div>	
+				</div>
+				<hr>
+			</form>
             <table class="table table-hover text-center border round">
                 <thead>
                 <tr>

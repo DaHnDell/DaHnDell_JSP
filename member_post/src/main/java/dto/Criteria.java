@@ -25,7 +25,7 @@ public class Criteria extends HttpServlet{
 	
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", amount=" + amount + "]";
+		return "Criteria [page=" + page + ", amount=" + amount + ", type = " + type + ", keword = " + keyword + "]";
 	}
 	
 	public int getOffset() {
@@ -84,5 +84,9 @@ public class Criteria extends HttpServlet{
 			return nullString;
 		}).collect(Collectors.toList()).toArray(strs);
 		return String.join("&", strs);
+	}
+	
+	public String[] getTypeArr() {
+		return type.split("");
 	}
 }
