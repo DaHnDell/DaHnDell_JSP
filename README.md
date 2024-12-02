@@ -1,1 +1,1 @@
-Nashiva John, I want to go home
+학습 중 실행했던 템플릿 파일들입니다.
